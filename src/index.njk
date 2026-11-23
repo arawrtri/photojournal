@@ -1,0 +1,29 @@
+---
+layout: base.njk
+---
+{% if collections.entries.length == 0 %}
+<p class="empty">No entries yet. Go to <a href="/admin/">/admin</a> to write your first one.</p>
+{% endif %}
+<div class="stream">
+{% for e in collections.entries %}
+  <article class="day">
+    <a class="datecol" href="/days/{{ e.fileSlug }}/">
+      <span class="num">{{ e.date | dayNum }}</span>
+      <span class="my">{{ e.date | monthYear }}</span>
+      <span class="wd">{{ e.date | weekday }}</span>
+    </a>
+    <div class="body">
+      <h2><a href="/days/{{ e.fileSlug }}/">{{ e.data.title }}</a></h2>
+      {% set n = e.data.photos.length %}
+      {% if n %}
+      <div class="grid g{{ 4 if n > 4 else n }}">
+        {% for p in e.data.photos %}{% if loop.index <= 4 %}
+        <a href="/days/{{ e.fileSlug }}/"><img src="{{ p.image | img(800) }}" alt="{{ p.caption or e.data.title }}" loading="lazy"></a>
+        {% endif %}{% endfor %}
+      </div>
+      {% endif %}
+      {% if e.data.summary %}<p class="summary">{{ e.data.summary }}</p>{% endif %}
+    </div>
+  </article>
+{% endfor %}
+</div>

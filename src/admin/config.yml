@@ -1,0 +1,34 @@
+# >>> CHANGE THIS to your GitHub username and repository name, e.g. "jane/my-photo-journal"
+backend:
+  name: github
+  repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME
+  branch: main
+
+# Photos you upload go here
+media_folder: "src/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: entries
+    label: Journal entries
+    label_singular: entry
+    folder: "src/entries"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}"
+    extension: md
+    format: frontmatter
+    summary: "{{title}}"
+    sortable_fields: ["date"]
+    fields:
+      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Photos"
+        name: "photos"
+        widget: "list"
+        required: false
+        summary: "{{fields.caption}}"
+        fields:
+          - { label: "Photo", name: "image", widget: "image" }
+          - { label: "Caption", name: "caption", widget: "string", required: false }
+      - { label: "Short preview (shows on the home page)", name: "summary", widget: "string", required: false }
+      - { label: "Journal entry", name: "body", widget: "markdown", required: false }

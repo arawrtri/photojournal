@@ -1,0 +1,17 @@
+---
+layout: base.njk
+---
+<article class="entry-page">
+  <a class="back" href="/">Back to all days</a>
+  <p class="when">{{ page.date | fullDate }}</p>
+  <h1>{{ title }}</h1>
+  <div class="photos">
+    {% for p in photos %}
+    <figure>
+      <img src="{{ p.image | img(1600) }}" alt="{{ p.caption or title }}" loading="lazy">
+      {% if p.caption %}<figcaption>{{ p.caption }}</figcaption>{% endif %}
+    </figure>
+    {% endfor %}
+  </div>
+  <div class="words">{{ content | safe }}</div>
+</article>
