@@ -1,7 +1,7 @@
 # >>> CHANGE THIS to your GitHub username and repository name, e.g. "jane/my-photo-journal"
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME
+  repo: arawrtri/photojournal
   branch: main
 
 # Photos you upload go here
